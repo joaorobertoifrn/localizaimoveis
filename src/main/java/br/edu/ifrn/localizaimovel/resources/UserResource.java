@@ -34,15 +34,15 @@ public class UserResource {
 	
 	@RequestMapping(value="/{id}", method=RequestMethod.GET)
 	public ResponseEntity<UserDTO> findById(@PathVariable String id) {
-		User user = service.findById(id);
-		return ResponseEntity.ok().body(new UserDTO(user));
+		User obj = service.findById(id);
+		return ResponseEntity.ok().body(new UserDTO(obj));
 	}
 	
 	@RequestMapping(method=RequestMethod.POST)
 	public ResponseEntity<Void> insert(@RequestBody UserDTO objDto) {
-		User user = service.fromDTO(objDto);
-		user = service.insert(user);
-		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(user.getId()).toUri();
+		User obj = service.fromDTO(objDto);
+		obj = service.insert(obj);
+		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(obj.getId()).toUri();
 		return ResponseEntity.created(uri).build();
 	}
 
@@ -54,16 +54,16 @@ public class UserResource {
 
 	@RequestMapping(value="/{id}", method=RequestMethod.PUT)
 	public ResponseEntity<Void> update(@RequestBody UserDTO objDto, @PathVariable String id) {
-		User user = service.fromDTO(objDto);
-		user.setId(id);
-		user = service.update(user);
+		User obj = service.fromDTO(objDto);
+		obj.setId(id);
+		obj = service.update(obj);
 		return ResponseEntity.noContent().build();
 	}
 
 	@RequestMapping(value="/{id}/pesquisas", method=RequestMethod.GET)
 	public ResponseEntity<List<Pesquisa>> findPesquisas(@PathVariable String id) {
-		User user = service.findById(id);
-		return ResponseEntity.ok().body(user.getPesquisas());
+		User obj = service.findById(id);
+		return ResponseEntity.ok().body(obj.getPesquisas());
 	}
 
 }
