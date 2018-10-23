@@ -81,16 +81,16 @@ public class Instantiation implements CommandLineRunner {
 		Imovel imovel7 = new Imovel(null, "Flat 2 quartos","2500000","sem foto","http://caixa.gov.br",cidade4,endereco3);
 		Imovel imovel8 = new Imovel(null, "Apartamento com 3 quartos, 2 vagas na garagem","2000000","sem foto","http://caixa.gov.br",cidade4,endereco4);
 
-		Pesquisa pesquisa1 = new Pesquisa(null,joao,imovel4,sdf.parse("22/10/2018"));
-		Pesquisa pesquisa2 = new Pesquisa(null,maria,imovel5,sdf.parse("21/10/2018"));
-		Pesquisa pesquisa3 = new Pesquisa(null,alex,imovel4,sdf.parse("20/10/2018"));
-		Pesquisa pesquisa4 = new Pesquisa(null,bob,imovel6,sdf.parse("20/10/2018"));
-		Pesquisa pesquisa5 = new Pesquisa(null,marcos,imovel7,sdf.parse("21/10/2018"));
-		Pesquisa pesquisa6 = new Pesquisa(null,andre,imovel8,sdf.parse("19/10/2018"));
-		Pesquisa pesquisa7 = new Pesquisa(null,marcos,imovel3,sdf.parse("15/10/2018"));
-		Pesquisa pesquisa8 = new Pesquisa(null,bob,imovel4,sdf.parse("16/10/2018"));
-		Pesquisa pesquisa9 = new Pesquisa(null,maria,imovel5,sdf.parse("09/10/2018"));
-		Pesquisa pesquisa10 = new Pesquisa(null,joao,imovel2,sdf.parse("01/10/2018"));
+		Pesquisa pesquisa1 = new Pesquisa(null,imovel4,sdf.parse("22/10/2018"));
+		Pesquisa pesquisa2 = new Pesquisa(null,imovel5,sdf.parse("21/10/2018"));
+		Pesquisa pesquisa3 = new Pesquisa(null,imovel4,sdf.parse("20/10/2018"));
+		Pesquisa pesquisa4 = new Pesquisa(null,imovel6,sdf.parse("20/10/2018"));
+		Pesquisa pesquisa5 = new Pesquisa(null,imovel7,sdf.parse("21/10/2018"));
+		Pesquisa pesquisa6 = new Pesquisa(null,imovel8,sdf.parse("19/10/2018"));
+		Pesquisa pesquisa7 = new Pesquisa(null,imovel3,sdf.parse("15/10/2018"));
+		Pesquisa pesquisa8 = new Pesquisa(null,imovel4,sdf.parse("16/10/2018"));
+		Pesquisa pesquisa9 = new Pesquisa(null,imovel5,sdf.parse("09/10/2018"));
+		Pesquisa pesquisa10 = new Pesquisa(null,imovel2,sdf.parse("01/10/2018"));
 		
 		
 		// Salvar os registros no banco

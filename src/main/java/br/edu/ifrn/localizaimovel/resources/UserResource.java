@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import br.edu.ifrn.localizaimovel.domain.Pesquisa;
 import br.edu.ifrn.localizaimovel.domain.User;
 import br.edu.ifrn.localizaimovel.dto.UserDTO;
 import br.edu.ifrn.localizaimovel.services.UserService;
@@ -57,6 +58,12 @@ public class UserResource {
 		user.setId(id);
 		user = service.update(user);
 		return ResponseEntity.noContent().build();
+	}
+
+	@RequestMapping(value="/{id}/pesquisas", method=RequestMethod.GET)
+	public ResponseEntity<List<Pesquisa>> findPesquisas(@PathVariable String id) {
+		User user = service.findById(id);
+		return ResponseEntity.ok().body(user.getPesquisas());
 	}
 
 }

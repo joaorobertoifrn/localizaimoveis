@@ -4,7 +4,6 @@ import java.io.Serializable;
 import java.util.Date;
 
 import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 @Document(collection="pesquisa")
@@ -14,9 +13,6 @@ public class Pesquisa implements Serializable {
 	@Id
 	private String id;
 	
-	private User usuario;
-	
-	@DBRef(lazy=true)
 	private Imovel imovel;
 	
 	private Date data;
@@ -25,10 +21,9 @@ public class Pesquisa implements Serializable {
 		
 	}
 
-	public Pesquisa(String id, User usuario, Imovel imovel, Date data) {
+	public Pesquisa(String id, Imovel imovel, Date data) {
 		super();
 		this.id = id;
-		this.usuario = usuario;
 		this.imovel = imovel;
 		this.data = data;
 	}
@@ -39,14 +34,6 @@ public class Pesquisa implements Serializable {
 
 	public void setId(String id) {
 		this.id = id;
-	}
-
-	public User getUsuario() {
-		return usuario;
-	}
-
-	public void setUsuario(User usuario) {
-		this.usuario = usuario;
 	}
 
 	public Imovel getImovel() {
@@ -64,7 +51,5 @@ public class Pesquisa implements Serializable {
 	public void setData(Date data) {
 		this.data = data;
 	}
-	
-	
 	
 }

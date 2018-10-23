@@ -21,8 +21,10 @@ public class User implements Serializable {
 	@DBRef(lazy=true)
 	private List<Pesquisa> pesquisas = new ArrayList<>();
 	
-	public User() {
-		
+	public User(String id, String name) {
+		super();
+		this.id = id;
+		this.name = name;	
 	}
 
 	public User(String id, String name, String email) {
