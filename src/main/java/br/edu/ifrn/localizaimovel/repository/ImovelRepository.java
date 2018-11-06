@@ -15,7 +15,7 @@ public interface ImovelRepository extends MongoRepository<Imovel, String> {
 	@Query("{'descricao': {$regex: ?0, $options: 'i' } }")
 	List<Imovel> findByDescricao(String text);
 
-	/* Busca utilizando consulta personalizada MongoDB */
+	/* Busca utilizando consulta personalizada MongoDB por expressão regular com vários critérios */
 	@Query("{ $or: [ {'descricao': {$regex: ?0, $options: 'i' } }, {'preco': {$regex: ?0, $options: 'i' } }, {'cidade.nome': {$regex: ?0, $options: 'i' } }, {'cidade.estado': {$regex: ?0, $options: 'i' } }, {'endereco.logradouro': {$regex: ?0, $options: 'i' } } ] }")
 	List<Imovel> buscaCompleta(String text);
 	
