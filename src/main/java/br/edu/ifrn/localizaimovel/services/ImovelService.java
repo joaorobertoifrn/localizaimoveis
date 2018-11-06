@@ -27,7 +27,7 @@ public class ImovelService {
 	}
 	
 	public List<Imovel> findByDescricao(String text) {
-		return repo.findByDescricaoContainingIgnoreCase(text);
+		return repo.findByDescricao(text);
 	}
 	
 	public Imovel insert(Imovel obj) {
