@@ -45,6 +45,13 @@ public class ImovelResource {
 		List<Imovel> list = service.findByDescricao(text);
 		return ResponseEntity.ok().body(list);
 	}
+
+	@RequestMapping(value="/buscacompleta", method=RequestMethod.GET)
+	public ResponseEntity<List<Imovel>> buscaCompleta(@RequestParam(value="text",defaultValue="") String text) {
+		text = URL.decodeParam(text);
+		List<Imovel> list = service.buscaCompleta(text);
+		return ResponseEntity.ok().body(list);
+	}
 	
 	@RequestMapping(method=RequestMethod.POST)
 	public ResponseEntity<Void> insert(@RequestBody ImovelDTO objDto) {

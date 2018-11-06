@@ -29,6 +29,10 @@ public class ImovelService {
 	public List<Imovel> findByDescricao(String text) {
 		return repo.findByDescricao(text);
 	}
+
+	public List<Imovel> buscaCompleta(String text) {
+		return repo.buscaCompleta(text);
+	}
 	
 	public Imovel insert(Imovel obj) {
 		return repo.insert(obj);
