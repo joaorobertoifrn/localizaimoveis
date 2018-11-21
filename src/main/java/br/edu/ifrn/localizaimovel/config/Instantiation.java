@@ -23,11 +23,8 @@ public class Instantiation implements CommandLineRunner {
 		
 		// Limpar os registros no banco
 		imovelRepository.deleteAll();
-		// Cria Usuarios no banco
-
 
 		File[] files = new File("src/main/resources/json/").listFiles();
-		//If this pathname does not denote a directory, then listFiles() returns null. 
 
 		for (File file : files) {
 		    if (file.isFile()) {
