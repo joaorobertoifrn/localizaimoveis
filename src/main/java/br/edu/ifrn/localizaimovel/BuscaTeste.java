@@ -9,6 +9,7 @@ import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
 
 import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -19,11 +20,11 @@ public class BuscaTeste {
 
 	List<String> fileList;
 
-	static String zipFilePath = "C:\\Users\\joao_\\eclipse-workspace\\BuscaImovel\\ListaImoveis\\ListaImoveis .zip";
+	static String zipFilePath = "c:\\zip\\Lista_imoveis_RN.zip";
     
     static String destDir = "c:\\output";
 
-	public static void main(String[] args) throws IOException {
+	public static void main(String[] args) throws IOException, JSONException {
 
 		unzip(zipFilePath, destDir);
 

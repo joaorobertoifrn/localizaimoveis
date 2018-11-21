@@ -2,7 +2,6 @@ package br.edu.ifrn.localizaimovel.resources;
 
 import java.net.URI;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -15,7 +14,6 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import br.edu.ifrn.localizaimovel.domain.Imovel;
-import br.edu.ifrn.localizaimovel.dto.ImovelDTO;
 import br.edu.ifrn.localizaimovel.resources.util.URL;
 import br.edu.ifrn.localizaimovel.services.ImovelService;
 
@@ -27,16 +25,15 @@ public class ImovelResource {
 	private ImovelService service;
 	
 	@RequestMapping(method=RequestMethod.GET)
-	public ResponseEntity<List<ImovelDTO>> findAll() {
+	public ResponseEntity<List<Imovel>> findAll() {
 		List<Imovel> list = service.findAll();
-		List<ImovelDTO> listDTO = list.stream().map(x -> new ImovelDTO(x)).collect(Collectors.toList());
-		return ResponseEntity.ok().body(listDTO);
+		return ResponseEntity.ok().body(list);
 	}
 	
 	@RequestMapping(value="/{id}", method=RequestMethod.GET)
-	public ResponseEntity<ImovelDTO> findById(@PathVariable String id) {
+	public ResponseEntity<Imovel> findById(@PathVariable String id) {
 		Imovel obj = service.findById(id);
-		return ResponseEntity.ok().body(new ImovelDTO(obj));
+		return ResponseEntity.ok().body(obj);
 	}
 	
 	@RequestMapping(value="/buscadescricao", method=RequestMethod.GET)
@@ -54,10 +51,9 @@ public class ImovelResource {
 	}
 	
 	@RequestMapping(method=RequestMethod.POST)
-	public ResponseEntity<Void> insert(@RequestBody ImovelDTO objDto) {
-		Imovel obj = service.fromDTO(objDto);
-		obj = service.insert(obj);
-		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(obj.getId()).toUri();
+	public ResponseEntity<Void> insert(@RequestBody Imovel imovel) {
+		service.insert(imovel);
+		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(imovel.getId()).toUri();
 		return ResponseEntity.created(uri).build();
 	}
 
@@ -68,10 +64,8 @@ public class ImovelResource {
 	}
 
 	@RequestMapping(value="/{id}", method=RequestMethod.PUT)
-	public ResponseEntity<Void> update(@RequestBody ImovelDTO objDto, @PathVariable String id) {
-		Imovel obj = service.fromDTO(objDto);
-		obj.setId(id);
-		obj = service.update(obj);
+	public ResponseEntity<Void> update(@RequestBody Imovel imovel, @PathVariable String id) {
+		service.update(imovel);
 		return ResponseEntity.noContent().build();
 	}
 

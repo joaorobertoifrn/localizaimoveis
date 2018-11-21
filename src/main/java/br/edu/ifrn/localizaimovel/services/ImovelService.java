@@ -7,7 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import br.edu.ifrn.localizaimovel.domain.Imovel;
-import br.edu.ifrn.localizaimovel.dto.ImovelDTO;
 import br.edu.ifrn.localizaimovel.repository.ImovelRepository;
 import br.edu.ifrn.localizaimovel.services.exception.ObjectNotFoundException;
 
@@ -56,9 +55,5 @@ public class ImovelService {
 		newObj.setPreco(obj.getPreco());
 	}
 
-	public Imovel fromDTO(ImovelDTO objDto) {
-		return new Imovel(objDto.getId(), objDto.getDescricao(), objDto.getPreco(), objDto.getFoto(), objDto.getLink(), objDto.getCidade(), objDto.getEndereco());
-	}
-	
 
 }

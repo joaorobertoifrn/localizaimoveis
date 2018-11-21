@@ -19,10 +19,10 @@ public interface ImovelRepository extends MongoRepository<Imovel, String> {
 	@Query("{ $or: [ "
 			+ "{'descricao': {$regex: ?0, $options: 'i' } }, "
 			+ "{'preco': {$regex: ?0, $options: 'i' } }, "
-			+ "{'cidade.nome': {$regex: ?0, $options: 'i' } }, "
-			+ "{'cidade.estado': {$regex: ?0, $options: 'i' } }, "
-			+ "{'endereco.logradouro': {$regex: ?0, $options: 'i' } }, "
-			+ "{'endereco.bairro': {$regex: ?0, $options: 'i' } } ] }")
+			+ "{'cidade': {$regex: ?0, $options: 'i' } }, "
+			+ "{'estado': {$regex: ?0, $options: 'i' } }, "
+			+ "{'endereco': {$regex: ?0, $options: 'i' } }, "
+			+ "{'bairro': {$regex: ?0, $options: 'i' } } ] }")
 	List<Imovel> buscaCompleta(String text);
 	
 	/* Busca utilizando consulta padrao do spring Data */
