@@ -15,6 +15,27 @@ public interface ImovelRepository extends MongoRepository<Imovel, String> {
 	@Query("{'descricao': {$regex: ?0, $options: 'i' } }")
 	List<Imovel> findByDescricao(String text);
 
+	/* Busca utilizando consulta personalizada MongoDB por expressão regular */
+	@Query("{'bairro': {$regex: ?0, $options: 'i' } }")
+	List<Imovel> findByBairro(String text);
+
+	/* Busca utilizando consulta personalizada MongoDB por expressão regular */
+	@Query("{'cidade': {$regex: ?0, $options: 'i' } }")
+	List<Imovel> findByCidade(String text);
+
+	/* Busca utilizando consulta personalizada MongoDB por expressão regular */
+	@Query("{'estado': {$regex: ?0, $options: 'i' } }")
+	List<Imovel> findByEstado(String text);
+
+	/* Busca utilizando consulta personalizada MongoDB por expressão regular */
+	@Query("{'valor': {$regex: ?0, $options: 'i' } }")
+	@Query("{'valor':{$gte: valor_inicial, $lt: valor_final}}")
+	List<Imovel> findByValor(String text);
+
+	/* Busca utilizando consulta personalizada MongoDB por expressão regular */
+	@Query("{'modalidadeVenda': {$regex: ?0, $options: 'i' } }")
+	List<Imovel> findByModalidadeVenda(String text);
+	
 	/* Busca utilizando consulta personalizada MongoDB por expressão regular com vários critérios */
 	@Query("{ $or: [ "
 			+ "{'descricao': {$regex: ?0, $options: 'i' } }, "
@@ -22,6 +43,7 @@ public interface ImovelRepository extends MongoRepository<Imovel, String> {
 			+ "{'cidade': {$regex: ?0, $options: 'i' } }, "
 			+ "{'estado': {$regex: ?0, $options: 'i' } }, "
 			+ "{'endereco': {$regex: ?0, $options: 'i' } }, "
+			+ "{'modalidadeVenda': {$regex: ?0, $options: 'i' } }, "
 			+ "{'bairro': {$regex: ?0, $options: 'i' } } ] }")
 	List<Imovel> buscaCompleta(String text);
 	
