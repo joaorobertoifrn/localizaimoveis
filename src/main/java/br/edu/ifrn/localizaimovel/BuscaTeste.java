@@ -1,5 +1,6 @@
 package br.edu.ifrn.localizaimovel;
 
+import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 
@@ -14,8 +15,9 @@ import org.jsoup.select.Elements;
 public class BuscaTeste {
 
 	public static void main(String[] args) throws IOException, JSONException {
+		File input = new File("src/main/resources/zip/lista_imoveis_TO.htm");
 
-		Document doc = Jsoup.parse("../src/main/resources/zip/lista_imoveis_AC.htm");
+		Document doc = Jsoup.parse(input,"windows-1252");
 		JSONArray list = new JSONArray();
 		for (Element table : doc.select("table")) {
 			for (Element row : table.select("tr")) {
@@ -25,9 +27,9 @@ public class BuscaTeste {
 				String endereco = tds.get(1).text();
 				String bairro = tds.get(2).text();
 				String descricao = tds.get(3).text();
-				Double preco =  Double.parseDouble(tds.get(4).text().replaceAll("\\.","").replace(",",".")); 
-				Double valorAvaliacao =  Double.parseDouble(tds.get(5).text().replaceAll("\\.","").replace(",",".")); 
-				Double desconto =  Double.parseDouble(tds.get(6).text().replaceAll("\\.","").replace(",",".")); 
+				Double preco =  Double.parseDouble(tds.get(4).text().equals("Preço (R$)")?"0":tds.get(4).text().replaceAll("\\.","").replace(",",".")); 
+				Double valorAvaliacao =  Double.parseDouble(tds.get(5).text().equals("Valor de avaliação (R$)")?"0":tds.get(5).text().replaceAll("\\.","").replace(",",".")); 
+				Double desconto =  Double.parseDouble(tds.get(6).text().equals("Desconto (%)")?"0":tds.get(6).text().replaceAll("\\.","").replace(",",".")); 
 				String modalidadeVenda = tds.get(7).text();
 				String foto = tds.get(8).html();
 				String cidade = tds.get(9).text();
@@ -46,19 +48,22 @@ public class BuscaTeste {
 				jsonObject.put("estado", estado);
 
 				list.put(jsonObject);
-				System.out.println(jsonObject.toString());
-				try {
 
-			        FileWriter file = new FileWriter("../src/main/resources/json/lista_imoveis_AC.json");
-			        file.write(jsonObject.toString());
-			        file.flush();
-			        file.close();
-
-			    } catch (IOException e) {
-			        e.printStackTrace();
-			    }
 			}
 		}
+		try {
+
+	        FileWriter file = new FileWriter("src/main/resources/json/lista_imoveis_TO.json");
+	        file.write(list.toString());
+	        file.flush();
+	        file.close();
+			System.out.println("Arquivo Gravado com sucesso....");
+
+
+	    } catch (IOException e) {
+	        e.printStackTrace();
+	    }
+
 	}
 
 }
