@@ -28,7 +28,7 @@ public interface ImovelRepository extends MongoRepository<Imovel, String> {
 	List<Imovel> findByEstado(String text);
 
 	/* Busca utilizando consulta personalizada MongoDB por expressão regular */
-	@Query("{'preco': {$gte:?0, $lte:?1}}")
+	@Query("{'preco': {$gte:?0, $lte:?1},$sort: { 'preco': 1 }}")
 	List<Imovel> findByPreco(Double valorInicial, Double valorFinal);
 
 	/* Busca utilizando consulta personalizada MongoDB por expressão regular */
