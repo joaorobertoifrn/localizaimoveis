@@ -29,7 +29,6 @@ public interface ImovelRepository extends MongoRepository<Imovel, String> {
 
 	/* Busca utilizando consulta personalizada MongoDB por expressão regular */
 	@Query("{'valor': {$regex: ?0, $options: 'i' } }")
-	@Query("{'valor':{$gte: valor_inicial, $lt: valor_final}}")
 	List<Imovel> findByValor(String text);
 
 	/* Busca utilizando consulta personalizada MongoDB por expressão regular */

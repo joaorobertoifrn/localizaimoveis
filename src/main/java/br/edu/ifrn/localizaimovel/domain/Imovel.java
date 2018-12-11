@@ -14,43 +14,43 @@ public class Imovel implements Serializable {
 
 	/* -- Exemplo do Objeto
 	  {
-    "Descricao": "Casa, 90.50 de área total, 90.50 de área privativa, 248.41 de área do terreno, 2 qto(s), a.serv, WC, 1 sala(s), cozinha.",
-    "valorAvaliacao": "96.667,01",
-    "Preco": "29.000,10",
+    "descricao": "Casa, 90.50 de área total, 90.50 de área privativa, 248.41 de área do terreno, 2 qto(s), a.serv, WC, 1 sala(s), cozinha.",
+    "valorAvaliacao": 96.667,01,
+    "preco": 29.000,10,
     "modalidadeVenda": "Venda Direta Online",
-    "desconto": "70.01",
-    "Foto": "",
-    "Bairro": "TANCREDO NEVES",
-    "Link": "<p class=\"MsoNormal\" align=\"center\" style=\"text-align:center\"><u><span style=\"font-size:8.0pt;color:blue\"><a href=\"http://www1.caixa.gov.br/simov/detalhe-imovel.asp?hdnOrigem=index&amp;hdnimovel= \n                   \n 8053400008895 \"> Detalhes</a></span></u></p>",
-    "Endereco": "Rua Luiz Moraes, N. 253",
-    "Cidade": "RIO BRANCO",
-    "Estado": "AC"
+    "desconto": 70.01,
+    "foto": "",
+    "bairro": "TANCREDO NEVES",
+    "link": "<p class=\"MsoNormal\" align=\"center\" style=\"text-align:center\"><u><span style=\"font-size:8.0pt;color:blue\"><a href=\"http://www1.caixa.gov.br/simov/detalhe-imovel.asp?hdnOrigem=index&amp;hdnimovel= \n                   \n 8053400008895 \"> Detalhes</a></span></u></p>",
+    "endereco": "Rua Luiz Moraes, N. 253",
+    "cidade": "RIO BRANCO",
+    "estado": "AC"
   		}
 	 * */
 	
 	@Id
 	private String id;
-	@JsonProperty(value = "Descricao")
+	@JsonProperty(value = "descricao")
 	private String descricao;
-	@JsonProperty(value = "Preco")
-	private String preco;
-	@JsonProperty(value = "Foto")
+	@JsonProperty(value = "preco")
+	private Double preco;
+	@JsonProperty(value = "foto")
 	private String foto;
-	@JsonProperty(value = "Link")
+	@JsonProperty(value = "link")
 	private String link;
 	@JsonProperty(value = "modalidadeVenda")
 	private String modalidadeVenda;
 	@JsonProperty(value = "valorAvaliacao")
-	private String valorAvaliacao;
+	private Double valorAvaliacao;
 	@JsonProperty(value = "desconto")
-	private String desconto;
-	@JsonProperty(value = "Cidade")
+	private Double desconto;
+	@JsonProperty(value = "cidade")
 	private String cidade;
-	@JsonProperty(value = "Endereco")
+	@JsonProperty(value = "endereco")
 	private String endereco;
-	@JsonProperty(value = "Bairro")
+	@JsonProperty(value = "bairro")
 	private String bairro;
-	@JsonProperty(value = "Estado")
+	@JsonProperty(value = "estado")
 	private String estado;
 
 	
@@ -59,8 +59,8 @@ public class Imovel implements Serializable {
 	}
 
 
-	public Imovel(String id, String descricao, String preco, String foto, String link, String modalidadeVenda,
-			String valorAvaliacao, String desconto, String cidade, String endereco, String bairro, String estado) {
+	public Imovel(String id, String descricao, Double preco, String foto, String link, String modalidadeVenda,
+			Double valorAvaliacao, Double desconto, String cidade, String endereco, String bairro, String estado) {
 		super();
 		this.id = id;
 		this.descricao = descricao;
@@ -102,13 +102,13 @@ public class Imovel implements Serializable {
 
 
 
-	public String getPreco() {
+	public Double getPreco() {
 		return preco;
 	}
 
 
 
-	public void setPreco(String preco) {
+	public void setPreco(Double preco) {
 		this.preco = preco;
 	}
 
@@ -150,25 +150,25 @@ public class Imovel implements Serializable {
 
 
 
-	public String getValorAvaliacao() {
+	public Double getValorAvaliacao() {
 		return valorAvaliacao;
 	}
 
 
 
-	public void setValorAvaliacao(String valorAvaliacao) {
+	public void setValorAvaliacao(Double valorAvaliacao) {
 		this.valorAvaliacao = valorAvaliacao;
 	}
 
 
 
-	public String getDesconto() {
+	public Double getDesconto() {
 		return desconto;
 	}
 
 
 
-	public void setDesconto(String desconto) {
+	public void setDesconto(Double desconto) {
 		this.desconto = desconto;
 	}
 
