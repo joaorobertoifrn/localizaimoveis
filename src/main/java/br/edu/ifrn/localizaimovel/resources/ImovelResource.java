@@ -4,6 +4,7 @@ import java.net.URI;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -50,6 +51,17 @@ public class ImovelResource {
 		List<Imovel> list = service.findByTipo(text);
 		return ResponseEntity.ok().body(list);
 	}
+
+	@RequestMapping(value = "/page", method = RequestMethod.GET)
+	public ResponseEntity<Page<Imovel>> findPage(
+			@RequestParam(value="page", defaultValue="0") Integer page, 
+			@RequestParam(value="linesPerPage", defaultValue="10") Integer linesPerPage, 
+			@RequestParam(value="orderBy", defaultValue="nome") String orderBy, 
+			@RequestParam(value="direction", defaultValue="ASC") String direction) {
+		Page<Imovel> list = service.findPage(page, linesPerPage, orderBy, direction);
+		return ResponseEntity.ok().body(list);
+	}
+	
 	
 	@RequestMapping(value="/buscacompleta", method=RequestMethod.GET)
 	public ResponseEntity<List<Imovel>> buscaCompleta(@RequestParam(value="text",defaultValue="") String text) {
@@ -90,5 +102,5 @@ public class ImovelResource {
 		service.update(imovel);
 		return ResponseEntity.noContent().build();
 	}
-
+	
 }

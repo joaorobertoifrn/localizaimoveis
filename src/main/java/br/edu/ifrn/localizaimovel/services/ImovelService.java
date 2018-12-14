@@ -4,6 +4,9 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Service;
 
 import br.edu.ifrn.localizaimovel.domain.Imovel;
@@ -32,7 +35,10 @@ public class ImovelService {
 	public List<Imovel> findByTipo(String text) {
 		return repo.findByTipo(text);
 	}
-	
+	public Page<Imovel> findPage(Integer page, Integer linesPerPage, String orderBy, String direction) {
+		PageRequest pageRequest = new PageRequest(page, linesPerPage, Direction.valueOf(direction), orderBy);
+		return repo.findAll(pageRequest);
+}	
 	public List<Imovel> buscaCompleta(String text) {
 		return repo.buscaCompleta(text);
 	}
