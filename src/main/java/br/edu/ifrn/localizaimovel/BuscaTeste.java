@@ -15,7 +15,7 @@ import org.jsoup.select.Elements;
 public class BuscaTeste {
 
 	public static void main(String[] args) throws IOException, JSONException {
-		File input = new File("src/main/resources/zip/lista_imoveis_TO.htm");
+		File input = new File("src/main/resources/zip/lista_imoveis_RN.htm");
 
 		Document doc = Jsoup.parse(input,"windows-1252");
 		JSONArray list = new JSONArray();
@@ -39,6 +39,8 @@ public class BuscaTeste {
 				jsonObject.put("endereco", endereco);
 				jsonObject.put("bairro", bairro);
 				jsonObject.put("descricao", descricao);
+				
+				jsonObject.put("tipo", descricao.substring(0, descricao.indexOf(",")));
 				jsonObject.put("preco", preco);
 				jsonObject.put("valorAvaliacao", valorAvaliacao);
 				jsonObject.put("desconto", desconto);
@@ -53,7 +55,7 @@ public class BuscaTeste {
 		}
 		try {
 
-	        FileWriter file = new FileWriter("src/main/resources/json/lista_imoveis_TO.json");
+	        FileWriter file = new FileWriter("src/main/resources/json/lista_imoveis_RN.json");
 	        file.write(list.toString());
 	        file.flush();
 	        file.close();

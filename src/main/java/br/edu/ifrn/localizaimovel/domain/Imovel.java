@@ -14,6 +14,7 @@ public class Imovel implements Serializable {
 
 	/* -- Exemplo do Objeto
 	  {
+	"tipo": "Casa",
     "descricao": "Casa, 90.50 de área total, 90.50 de área privativa, 248.41 de área do terreno, 2 qto(s), a.serv, WC, 1 sala(s), cozinha.",
     "valorAvaliacao": 96.667,01,
     "preco": 29.000,10,
@@ -30,6 +31,8 @@ public class Imovel implements Serializable {
 	
 	@Id
 	private String id;
+	@JsonProperty(value = "tipo")
+	private String tipo;
 	@JsonProperty(value = "descricao")
 	private String descricao;
 	@JsonProperty(value = "preco")
@@ -58,11 +61,11 @@ public class Imovel implements Serializable {
 		
 	}
 
-
-	public Imovel(String id, String descricao, Double preco, String foto, String link, String modalidadeVenda,
+	public Imovel(String id,String tipo, String descricao, Double preco, String foto, String link, String modalidadeVenda,
 			Double valorAvaliacao, Double desconto, String cidade, String endereco, String bairro, String estado) {
 		super();
 		this.id = id;
+		this.tipo = tipo;
 		this.descricao = descricao;
 		this.preco = preco;
 		this.foto = foto;
@@ -89,6 +92,13 @@ public class Imovel implements Serializable {
 	}
 
 
+	public String getTipo() {
+		return tipo;
+	}
+
+	public void setTipo(String tipo) {
+		this.tipo = tipo;
+	}
 
 	public String getDescricao() {
 		return descricao;

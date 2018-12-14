@@ -12,6 +12,10 @@ import br.edu.ifrn.localizaimovel.domain.Imovel;
 public interface ImovelRepository extends MongoRepository<Imovel, String> {
 
 	/* Busca utilizando consulta personalizada MongoDB por expressão regular */
+	@Query("{tipo:{'$regex' : '^?0', '$options' : 'i'}}")
+	List<Imovel> findByTipo(String text);
+	
+	/* Busca utilizando consulta personalizada MongoDB por expressão regular */
 	@Query("{'descricao': {$regex: ?0, $options: 'i' } }")
 	List<Imovel> findByDescricao(String text);
 

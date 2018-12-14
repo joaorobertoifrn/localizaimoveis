@@ -43,6 +43,13 @@ public class ImovelResource {
 		return ResponseEntity.ok().body(list);
 	}
 
+	@RequestMapping(value="/tipo", method=RequestMethod.GET)
+	public ResponseEntity<List<Imovel>> findByTipo(@RequestParam(value="text",defaultValue="") String text) {
+		text = URL.decodeParam(text);
+		List<Imovel> list = service.findByTipo(text);
+		return ResponseEntity.ok().body(list);
+	}
+	
 	@RequestMapping(value="/buscacompleta", method=RequestMethod.GET)
 	public ResponseEntity<List<Imovel>> buscaCompleta(@RequestParam(value="text",defaultValue="") String text) {
 		text = URL.decodeParam(text);
