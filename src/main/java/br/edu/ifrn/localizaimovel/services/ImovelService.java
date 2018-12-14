@@ -36,6 +36,10 @@ public class ImovelService {
 	public List<Imovel> buscaCompleta(String text) {
 		return repo.buscaCompleta(text);
 	}
+
+	public List<Imovel> buscaPorPreco(Double valorInicial, Double valorFinal) {
+		return repo.findByPreco(valorInicial, valorFinal);
+	}
 	
 	public Imovel insert(Imovel obj) {
 		return repo.insert(obj);

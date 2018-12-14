@@ -56,6 +56,20 @@ public class ImovelResource {
 		List<Imovel> list = service.buscaCompleta(text);
 		return ResponseEntity.ok().body(list);
 	}
+
+	@RequestMapping(value="/buscaporpreco", method=RequestMethod.GET)
+	public ResponseEntity<List<Imovel>> buscaPorPreco(@RequestParam(value="vinicial",defaultValue="") String vinicial, @RequestParam(value="vfinal",defaultValue="") String vfinal) {
+		
+		vinicial = URL.decodeParam(vinicial);
+		vfinal = URL.decodeParam(vfinal);
+		
+		Double precoinicial =  Double.parseDouble(vinicial.replaceAll("\\.","").replace(",","."));
+		Double precofinal =  Double.parseDouble(vfinal.replaceAll("\\.","").replace(",","."));
+		
+		List<Imovel> list = service.buscaPorPreco(precoinicial, precofinal);
+		return ResponseEntity.ok().body(list);
+	}
+	
 	
 	@RequestMapping(method=RequestMethod.POST)
 	public ResponseEntity<Void> insert(@RequestBody Imovel imovel) {
