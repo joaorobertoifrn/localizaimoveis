@@ -46,6 +46,7 @@ public class ImovelResource {
 	@RequestMapping(value="/tipo", method=RequestMethod.GET)
 	public ResponseEntity<List<Imovel>> findByTipo(@RequestParam(value="text",defaultValue="") String text) {
 		text = URL.decodeParam(text);
+		System.out.println("Busca por Tipo: "+text);
 		List<Imovel> list = service.findByTipo(text);
 		return ResponseEntity.ok().body(list);
 	}
