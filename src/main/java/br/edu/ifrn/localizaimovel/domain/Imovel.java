@@ -30,7 +30,7 @@ public class Imovel implements Serializable {
 	 * */
 	
 	@Id
-	private String id;
+	private Long id;
 	@JsonProperty(value = "tipo")
 	private String tipo;
 	@JsonProperty(value = "descricao")
@@ -61,7 +61,7 @@ public class Imovel implements Serializable {
 		
 	}
 
-	public Imovel(String id,String tipo, String descricao, Double preco, String foto, String link, String modalidadeVenda,
+	public Imovel(Long id,String tipo, String descricao, Double preco, String foto, String link, String modalidadeVenda,
 			Double valorAvaliacao, Double desconto, String cidade, String endereco, String bairro, String estado) {
 		super();
 		this.id = id;
@@ -81,13 +81,13 @@ public class Imovel implements Serializable {
 
 
 
-	public String getId() {
+	public Long getId() {
 		return id;
 	}
 
 
 
-	public void setId(String id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 
