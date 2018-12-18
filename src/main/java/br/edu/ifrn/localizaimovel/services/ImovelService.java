@@ -23,7 +23,7 @@ public class ImovelService {
 		return repo.findAll();
 	}
 	
-	public Imovel findById(String id) {
+	public Imovel findById(Long id) {
 		Optional<Imovel> obj = repo.findById(id);
 		return obj.orElseThrow(() -> new ObjectNotFoundException("Imovel não encontrado"));
 	}
@@ -51,7 +51,7 @@ public class ImovelService {
 		return repo.insert(obj);
 	}
 	
-	public void delete(String id) {
+	public void delete(Long id) {
 		findById(id);
 		repo.deleteById(id);
 	}

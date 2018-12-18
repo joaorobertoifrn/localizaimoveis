@@ -9,7 +9,7 @@ import org.springframework.stereotype.Repository;
 import br.edu.ifrn.localizaimovel.domain.Imovel;
 
 @Repository
-public interface ImovelRepository extends MongoRepository<Imovel, String> {
+public interface ImovelRepository extends MongoRepository<Imovel, Long> {
 
 	/* Busca utilizando consulta personalizada MongoDB por expressão regular */
 	@Query("{tipo:{'$regex' : '^?0', '$options' : 'i'}}")
