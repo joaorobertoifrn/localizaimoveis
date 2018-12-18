@@ -33,7 +33,7 @@ public class ImovelResource {
 	
 	@RequestMapping(value="/{id}", method=RequestMethod.GET)
 	public ResponseEntity<Imovel> findById(@PathVariable String id) {
-		Imovel obj = service.findById(id);
+		Imovel obj = service.findById(Long.parseLong(id));
 		return ResponseEntity.ok().body(obj);
 	}
 	
@@ -92,7 +92,7 @@ public class ImovelResource {
 
 	@RequestMapping(value="/{id}", method=RequestMethod.DELETE)
 	public ResponseEntity<Void> delete(@PathVariable String id) {
-		service.delete(id);	
+		service.delete(Long.parseLong(id));	
 		return ResponseEntity.noContent().build();
 	}
 
