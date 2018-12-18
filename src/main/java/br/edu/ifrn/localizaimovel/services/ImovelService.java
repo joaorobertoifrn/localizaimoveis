@@ -23,35 +23,28 @@ public class ImovelService {
 		return repo.findAll();
 	}
 	
-	public Imovel findById(Long id) {
+	public Imovel findById(Integer id) {
 		Optional<Imovel> obj = repo.findById(id);
 		return obj.orElseThrow(() -> new ObjectNotFoundException("Imovel não encontrado"));
 	}
 	
-	public List<Imovel> findByDescricao(String text) {
-		return repo.findByDescricao(text);
-	}
-
 	public List<Imovel> findByTipo(String text) {
-		return repo.findByTipo(text);
+		return repo.findByTipoStartingWithIgnoreCase(text);
 	}
 	public Page<Imovel> findPage(Integer page, Integer linesPerPage, String orderBy, String direction) {
 		PageRequest pageRequest = new PageRequest(page, linesPerPage, Direction.valueOf(direction), orderBy);
 		return repo.findAll(pageRequest);
 }	
-	public List<Imovel> buscaCompleta(String text) {
-		return repo.buscaCompleta(text);
-	}
 
 	public List<Imovel> buscaPorPreco(Double valorInicial, Double valorFinal) {
-		return repo.findByPreco(valorInicial, valorFinal);
+		return repo.findByPrecoBetween(valorInicial, valorFinal);
 	}
 	
 	public Imovel insert(Imovel obj) {
-		return repo.insert(obj);
+		return repo.save(obj);
 	}
 	
-	public void delete(Long id) {
+	public void delete(Integer id) {
 		findById(id);
 		repo.deleteById(id);
 	}

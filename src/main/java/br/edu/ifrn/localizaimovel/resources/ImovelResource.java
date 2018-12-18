@@ -33,17 +33,10 @@ public class ImovelResource {
 	
 	@RequestMapping(value="/{id}", method=RequestMethod.GET)
 	public ResponseEntity<Imovel> findById(@PathVariable String id) {
-		Imovel obj = service.findById(Long.parseLong(id));
+		Imovel obj = service.findById(Integer.parseInt(id));
 		return ResponseEntity.ok().body(obj);
 	}
 	
-	@RequestMapping(value="/buscadescricao", method=RequestMethod.GET)
-	public ResponseEntity<List<Imovel>> findByDescricao(@RequestParam(value="text",defaultValue="") String text) {
-		text = URL.decodeParam(text);
-		List<Imovel> list = service.findByDescricao(text);
-		return ResponseEntity.ok().body(list);
-	}
-
 	@RequestMapping(value="/tipo", method=RequestMethod.GET)
 	public ResponseEntity<List<Imovel>> findByTipo(@RequestParam(value="text",defaultValue="") String text) {
 		text = URL.decodeParam(text);
@@ -62,13 +55,6 @@ public class ImovelResource {
 	}
 	
 	
-	@RequestMapping(value="/buscacompleta", method=RequestMethod.GET)
-	public ResponseEntity<List<Imovel>> buscaCompleta(@RequestParam(value="text",defaultValue="") String text) {
-		text = URL.decodeParam(text);
-		List<Imovel> list = service.buscaCompleta(text);
-		return ResponseEntity.ok().body(list);
-	}
-
 	@RequestMapping(value="/buscaporpreco", method=RequestMethod.GET)
 	public ResponseEntity<List<Imovel>> buscaPorPreco(@RequestParam(value="vinicial",defaultValue="") String vinicial, @RequestParam(value="vfinal",defaultValue="") String vfinal) {
 		
@@ -92,7 +78,7 @@ public class ImovelResource {
 
 	@RequestMapping(value="/{id}", method=RequestMethod.DELETE)
 	public ResponseEntity<Void> delete(@PathVariable String id) {
-		service.delete(Long.parseLong(id));	
+		service.delete(Integer.parseInt(id));	
 		return ResponseEntity.noContent().build();
 	}
 

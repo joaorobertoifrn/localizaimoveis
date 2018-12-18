@@ -2,12 +2,15 @@ package br.edu.ifrn.localizaimovel.domain;
 
 import java.io.Serializable;
 
-import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.Document;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-@Document(collection="imovel")
+
+@Entity
 public class Imovel implements Serializable {
 	
 	private static final long serialVersionUID = 1L;
@@ -29,8 +32,9 @@ public class Imovel implements Serializable {
   		}
 	 * */
 	
-	@Id
-	private Long id;
+    @Id
+    @GeneratedValue(strategy=GenerationType.AUTO)
+	private Integer id;
 	@JsonProperty(value = "tipo")
 	private String tipo;
 	@JsonProperty(value = "descricao")
@@ -61,7 +65,7 @@ public class Imovel implements Serializable {
 		
 	}
 
-	public Imovel(Long id,String tipo, String descricao, Double preco, String foto, String link, String modalidadeVenda,
+	public Imovel(Integer id,String tipo, String descricao, Double preco, String foto, String link, String modalidadeVenda,
 			Double valorAvaliacao, Double desconto, String cidade, String endereco, String bairro, String estado) {
 		super();
 		this.id = id;
@@ -81,13 +85,13 @@ public class Imovel implements Serializable {
 
 
 
-	public Long getId() {
+	public Integer getId() {
 		return id;
 	}
 
 
 
-	public void setId(Long id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 
